@@ -26,7 +26,7 @@ SECRET_KEY = '=$_d%2bz!kzl8!9e5z-0qm7+l%2l6+8uy()xvsg_b*c*q5n*ve'
 # SECURITY WARNING: don't run with debug turned on in production!
 if ON_HEROKU == True:
   DEBUG = False
-else:  
+else:
   DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -35,6 +35,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'registration',
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -92,13 +94,7 @@ else:
     DATABASES['default'] =  dj_database_url.config()
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     ALLOWED_HOSTS = ['*']
-    
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+
 
 
 # Internationalization
@@ -121,3 +117,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(MAIN_DIR, 'static'),)
 STATIC_ROOT = 'staticfiles'
+
+LOGIN_URL = 'user/login'
+LOGIN_REDIRECT_URL = '/'
+SITE_ID = 1
